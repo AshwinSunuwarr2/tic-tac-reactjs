@@ -1,4 +1,4 @@
-import Board from "./Components/Board";
+import Game from "./Components/Game";
 
 function App() {
   return (
@@ -7,7 +7,7 @@ function App() {
         <h1 className="text-white font-serif text-3xl text-center font-bold py-4">
           Tic-Tac-Toe
         </h1>
-        <Board />
+        <Game />
       </div>
     </>
   );

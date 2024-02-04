@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import Square from "./Square";
 
-function Board() {
-  const [squares, setSquares] = useState(Array(9).fill(null));
-  const [xNext, setXNext] = useState(true);
-
+function Board({ squares, xNext, onPlay }) {
   const handleClick = (i) => {
     if (squares[i] || calcWinner(squares)) {
       return;
@@ -15,8 +12,7 @@ function Board() {
     } else {
       nextSquare[i] = "O";
     }
-    setSquares(nextSquare);
-    setXNext(!xNext);
+    onPlay(nextSquare);
   };
 
   const calcWinner = (box) => {
@@ -52,10 +48,11 @@ function Board() {
     status = "Turn: " + (xNext ? "X" : "O");
   }
   return (
-    <>
+    <div className="flex flex-col items-center">
       <div className="text-blue-100 text-lg font-serif py-2 font-bold ">
         {status}
       </div>
+
       <div className="bg-gray-600 h-60 w-60 flex flex-row flex-wrap">
         <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
         <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
@@ -67,7 +64,7 @@ function Board() {
         <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
         <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
       </div>
-    </>
+    </div>
   );
 }
 
